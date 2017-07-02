@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class HotelRoom {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         // Read input data
         String month = scanner.nextLine();;
         int nights = Integer.parseInt(scanner.nextLine());

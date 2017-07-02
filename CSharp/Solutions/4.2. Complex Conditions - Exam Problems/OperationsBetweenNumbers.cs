@@ -19,6 +19,16 @@
             {
                 output = string.Format("Cannot divide {0} by zero", N1);
             }
+			else if (nOperator.Equals("/"))
+			{
+				result = N1 / N2;
+				output = string.Format("{0} {1} {2} = {3:F2}", N1, nOperator, N2, result);
+			}
+			else if (nOperator.Equals("%"))
+			{
+				result = N1 % N2;
+				output = string.Format("{0} {1} {2} = {3}", N1, nOperator, N2, result);
+			}
             else
             {
                 if (nOperator.Equals("+"))
@@ -41,17 +51,6 @@
                     N2,
                     result,
                     result % 2 == 0 ? "even" : "odd");
-
-                if (nOperator.Equals("/"))
-                {
-                    result = N1 / N2;
-                    output = string.Format("{0} {1} {2} = {3:F2}", N1, nOperator, N2, result);
-                }
-                else if (nOperator.Equals("%"))
-                {
-                    result = N1 % N2;
-                    output = string.Format("{0} {1} {2} = {3}", N1, nOperator, N2, result);
-                }
             }
 
             Console.WriteLine(output);

@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Trip {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         // Read input data
         BigDecimal budget = new BigDecimal(scanner.nextLine());
         String season = scanner.nextLine();

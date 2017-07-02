@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class OnTimeForTheExam {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         // Set some constants.
         String late = "Late";
         String onTime = "On time";
