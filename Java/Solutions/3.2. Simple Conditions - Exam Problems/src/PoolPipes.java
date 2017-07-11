@@ -16,7 +16,7 @@ public class PoolPipes {
                     Math.floor(pipe1 * hours / water * 100),
                     Math.floor(pipe2 * hours / water * 100));
         } else {
-            System.out.printf("For %.2f hours the pool overflows with %.2f liters.",
+            System.out.printf("For %f hours the pool overflows with %f liters.",
                     hours, water - volume);
         }
     }
