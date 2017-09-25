@@ -64,7 +64,6 @@ public class MetricConverter {
 			size = size * 1.0936133;
 		}
 
-		System.out.println(size + " " + destinationMetric);
-
+		System.out.printf("%f %s", size, destinationMetric);
 	}
 }
