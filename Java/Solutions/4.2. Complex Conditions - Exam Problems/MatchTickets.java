@@ -46,10 +46,10 @@ public class MatchTickets {
         // Calculate amount of money left and result to display.
         DecimalFormat decimalFormatter = new DecimalFormat("0.00");
         moneyDifference = budget.subtract(transportCharges.add(moneyForTickets));
-        String result = String.format("Yes! You have %s leva left.", decimalFormatter.format(moneyDifference.setScale(2, BigDecimal.ROUND_HALF_EVEN)));
+        String result = String.format("Yes! You have %s leva left.", decimalFormatter.format(moneyDifference.setScale(2, BigDecimal.ROUND_HALF_UP)));
 
         if (moneyDifference.compareTo(BigDecimal.valueOf(0)) < 0) {
-            result = String.format("Not enough money! You need %s leva.", decimalFormatter.format(moneyDifference.setScale(2, BigDecimal.ROUND_HALF_EVEN).abs()));
+            result = String.format("Not enough money! You need %s leva.", decimalFormatter.format(moneyDifference.setScale(2, BigDecimal.ROUND_HALF_UP).abs()));
         }
 
         // Display the result

@@ -67,8 +67,8 @@ public class HotelRoom {
         }
 
         DecimalFormat decimalFormatter = new DecimalFormat("0.00");
-        String studioInfo = String.format("Studio: %s lv.", decimalFormatter.format(studioRent.setScale(2, BigDecimal.ROUND_HALF_EVEN)));
-        String apartmentInfo = String.format("Apartment: %s lv.", decimalFormatter.format(apartmentRent.setScale(2, BigDecimal.ROUND_HALF_EVEN)));
+        String studioInfo = String.format("Studio: %s lv.", decimalFormatter.format(studioRent.setScale(2, BigDecimal.ROUND_HALF_UP)));
+        String apartmentInfo = String.format("Apartment: %s lv.", decimalFormatter.format(apartmentRent.setScale(2, BigDecimal.ROUND_HALF_UP)));
 
         // Display the result
         System.out.println(apartmentInfo);
