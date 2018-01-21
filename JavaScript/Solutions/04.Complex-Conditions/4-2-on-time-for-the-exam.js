@@ -12,11 +12,8 @@ function onTimeForTheExam([arg1, arg2, arg3, arg4]){
 	
 	// Calculate all differences in minutes.
 	let examTime = (examHours * 60) + examMinutes;
-	//console.log("examTime:" + examTime);
 	let arrivalTime = (arrivalHours * 60) + arrivalMinutes;
-	//console.log("arrivalTime:" + arrivalTime);
 	let totalMinutesDifference = arrivalTime - examTime;
-	//console.log("totalMinutesDifference:" + totalMinutesDifference);
 
 	// Check when the student had arrived for the exam and display the result
 	let studentArrival = late;
@@ -26,23 +23,17 @@ function onTimeForTheExam([arg1, arg2, arg3, arg4]){
 		studentArrival = onTime;
 	}
 	
-	//console.log("studentArrival:" + studentArrival);
-	
 	// Check and output final result.
 	let result = "";
 	if (totalMinutesDifference != 0) {
 		let hoursDifference = Math.abs(~~(totalMinutesDifference / 60));
-		//console.log("hoursDifference:" + hoursDifference);
 		let minutesDifference = Math.abs(totalMinutesDifference % 60);
-		//console.log("minutesDifference:" + minutesDifference);
 
 		if (hoursDifference > 0) {
 			result = hoursDifference + ":" + (minutesDifference > 9 ? minutesDifference : "0" + minutesDifference) + " hours";
 		} else {
 			result = minutesDifference + " minutes";
 		}
-		
-		//console.log("result:" + result);
 
 		if (totalMinutesDifference < 0)	{
 			result += " before the start";
