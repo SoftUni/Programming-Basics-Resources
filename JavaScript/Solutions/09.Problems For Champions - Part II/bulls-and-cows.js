@@ -1,5 +1,5 @@
 function solve(secretNum, bulls, cows) {
-    let guessNumber = secretNum;
+    let guessNumber = parseInt(secretNum);
     let targetBulls = bulls;
     let targetCows = cows;
 
@@ -13,10 +13,10 @@ function solve(secretNum, bulls, cows) {
             {
                 for (let digit4 = 1; digit4 <= 9; digit4++)
                 {
-                    let guessDigit1 = (guessNumber / 1000) % 10;
-                    let guessDigit2 = (guessNumber / 100) % 10;
-                    let guessDigit3 = (guessNumber / 10) % 10;
-                    let guessDigit4 = (guessNumber / 1) % 10;
+                    let guessDigit1 = Math.floor(guessNumber / 1000) % 10;
+                    let guessDigit2 = Math.floor(guessNumber / 100) % 10;
+                    let guessDigit3 = Math.floor(guessNumber / 10) % 10;
+                    let guessDigit4 = Math.floor(guessNumber / 1) % 10;
 
                     let digitToCheck1 = digit1;
                     let digitToCheck2 = digit2;
@@ -160,6 +160,6 @@ function solve(secretNum, bulls, cows) {
     }
 }
 
-solve(2228, 2, 1); /*1222 2122 2212 2232 2242 2252 2262 2272 2281 2283 2284 2285 2286 2287 2289 2292 2322 2422 2522 2622 2722 2821 2823 2824 2825 2826 2827 2829 2922 3222 4222 5222 6222 7222 8221 8223 8224 8225 8226 8227 8229 9222 */
+solve(2228, 2, 1); /* 1222 2122 2212 2232 2242 2252 2262 2272 2281 2283 2284 2285 2286 2287 2289 2292 2322 2422 2522 2622 2722 2821 2823 2824 2825 2826 2827 2829 2922 3222 4222 5222 6222 7222 8221 8223 8224 8225 8226 8227 8229 9222 */
 solve(1234, 3, 0); /* 1134 1214 1224 1231 1232 1233 1235 1236 1237 1238 1239 1244 1254 1264 1274 1284 1294 1334 1434 1534 1634 1734 1834 1934 2234 3234 4234 5234 6234 7234 8234 9234 */
 solve(1234, 3, 1); /* No */

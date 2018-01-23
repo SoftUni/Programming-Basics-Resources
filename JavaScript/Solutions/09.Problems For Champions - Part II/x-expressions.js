@@ -13,7 +13,7 @@ function solve(expression) {
             symbol = expression[index]; // ++index
 
             while (symbol != ')') {
-                if (0 <= symbol - '0' && symbol - '0' <= 9) {
+                if ('0' <= symbol && symbol <= '9') {
                     switch (innerOperator) {
                         case '+':
                             innerResult += symbol - '0';
@@ -85,5 +85,5 @@ function solve(expression) {
     console.log(result.toFixed(2));
 }
 
-solve('4+6/5+(4*9–8)/7*2='); // 8.57
+solve('4+6/5+(4*9-8)/7*2='); // 8.57
 solve('3+(6/5)+(2*3/7)*7/2*(9/4+4*1)='); // 110.63
