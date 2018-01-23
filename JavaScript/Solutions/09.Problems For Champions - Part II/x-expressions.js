@@ -1,11 +1,12 @@
 function solve(expression) {
 
-    let index = 0;
     let result = 0;
+    let index = 0;
     let symbol = expression[index];
     let expressionOperator = '+';
 
     while (symbol != '=') {
+
         if (symbol == '(') {
             let innerResult = 0;
             let innerOperator = '+';

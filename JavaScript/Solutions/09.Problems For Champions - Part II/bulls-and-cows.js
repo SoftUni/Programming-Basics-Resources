@@ -5,14 +5,11 @@ function solve(secretNum, bulls, cows) {
 
     let solutionFound = false;
 
-    for (let digit1 = 1; digit1 <= 9; digit1++)
-    {
-        for (let digit2 = 1; digit2 <= 9; digit2++)
-        {
-            for (let digit3 = 1; digit3 <= 9; digit3++)
-            {
-                for (let digit4 = 1; digit4 <= 9; digit4++)
-                {
+    for (let digit1 = 1; digit1 <= 9; digit1++) {
+        for (let digit2 = 1; digit2 <= 9; digit2++) {
+            for (let digit3 = 1; digit3 <= 9; digit3++) {
+                for (let digit4 = 1; digit4 <= 9; digit4++) {
+
                     let guessDigit1 = Math.floor(guessNumber / 1000) % 10;
                     let guessDigit2 = Math.floor(guessNumber / 100) % 10;
                     let guessDigit3 = Math.floor(guessNumber / 10) % 10;
@@ -27,32 +24,28 @@ function solve(secretNum, bulls, cows) {
                     let currentCows = 0;
 
                     // Find all bulls, count them and remove them (assign -1 and -2)
-                    if (digitToCheck1 == guessDigit1)
-                    {
+                    if (digitToCheck1 == guessDigit1) {
                         // Bull at position #1 found -> count it and remove it
                         currentBulls++;
                         guessDigit1 = -1;
                         digitToCheck1 = -2;
                     }
 
-                    if (digitToCheck2 == guessDigit2)
-                    {
+                    if (digitToCheck2 == guessDigit2) {
                         // Bull at position #2 found -> count it and remove it
                         currentBulls++;
                         guessDigit2 = -1;
                         digitToCheck2 = -2;
                     }
 
-                    if (digitToCheck3 == guessDigit3)
-                    {
+                    if (digitToCheck3 == guessDigit3) {
                         // Bull at position #3 found -> count it and remove it
                         currentBulls++;
                         guessDigit3 = -1;
                         digitToCheck3 = -2;
                     }
 
-                    if (digitToCheck4 == guessDigit4)
-                    {
+                    if (digitToCheck4 == guessDigit4) {
                         // Bull at position #4 found -> count it and remove it
                         currentBulls++;
                         guessDigit4 = -1;
@@ -60,89 +53,75 @@ function solve(secretNum, bulls, cows) {
                     }
 
                     // Find all cows for digitToCheck1, count them and remove them (assign -1)
-                    if (digitToCheck1 == guessDigit2)
-                    {
+                    if (digitToCheck1 == guessDigit2) {
                         // Cow at position #2 found -> count it and remove it
                         currentCows++;
                         guessDigit2 = -1;
                     }
-                    else if (digitToCheck1 == guessDigit3)
-                    {
+                    else if (digitToCheck1 == guessDigit3) {
                         // Cow at position #3 found -> count it and remove it
                         currentCows++;
                         guessDigit3 = -1;
                     }
-                    else if (digitToCheck1 == guessDigit4)
-                    {
+                    else if (digitToCheck1 == guessDigit4) {
                         // Cow at position #4 found -> count it and remove it
                         currentCows++;
                         guessDigit4 = -1;
                     }
 
                     // Find all cows for d2, count them and remove them (assign -1)
-                    if (digitToCheck2 == guessDigit1)
-                    {
+                    if (digitToCheck2 == guessDigit1) {
                         // Cow at position #1 found -> count it and remove it
                         currentCows++;
                         guessDigit1 = -1;
                     }
-                    else if (digitToCheck2 == guessDigit3)
-                    {
+                    else if (digitToCheck2 == guessDigit3) {
                         // Cow at position #3 found -> count it and remove it
                         currentCows++;
                         guessDigit3 = -1;
                     }
-                    else if (digitToCheck2 == guessDigit4)
-                    {
+                    else if (digitToCheck2 == guessDigit4) {
                         // Cow at position #4 found -> count it and remove it
                         currentCows++;
                         guessDigit4 = -1;
                     }
 
                     // Find all cows for d3, count them and remove them (assign -1)
-                    if (digitToCheck3 == guessDigit1)
-                    {
+                    if (digitToCheck3 == guessDigit1) {
                         // Cows at position #1 found -> count it and remove it
                         currentCows++;
                         guessDigit1 = -1;
                     }
-                    else if (digitToCheck3 == guessDigit2)
-                    {
+                    else if (digitToCheck3 == guessDigit2) {
                         // Cow at position #2 found -> count it and remove it
                         currentCows++;
                         guessDigit2 = -1;
                     }
-                    else if (digitToCheck3 == guessDigit4)
-                    {
+                    else if (digitToCheck3 == guessDigit4) {
                         // Cow at position #4 found -> count it and remove it
                         currentCows++;
                         guessDigit4 = -1;
                     }
 
                     // Find all cows for d4, count them and remove them (assign -1)
-                    if (digitToCheck4 == guessDigit1)
-                    {
+                    if (digitToCheck4 == guessDigit1) {
                         // Cows at position #1 found -> count it and remove it
                         currentCows++;
                         guessDigit1 = -1;
                     }
-                    else if (digitToCheck4 == guessDigit2)
-                    {
+                    else if (digitToCheck4 == guessDigit2) {
                         // Cow at position #2 found -> count it and remove it
                         currentCows++;
                         guessDigit2 = -1;
                     }
-                    else if (digitToCheck4 == guessDigit3)
-                    {
+                    else if (digitToCheck4 == guessDigit3) {
                         // Cow at position #3 found -> count it and remove it
                         currentCows++;
                         guessDigit3 = -1;
                     }
 
-                    if (currentBulls == targetBulls && currentCows == targetCows)
-                    {
-                        if (solutionFound)
-                        {
+                    if (currentBulls == targetBulls && currentCows == targetCows) {
+                        if (solutionFound) {
                             console.log(" ");
                         }
 
@@ -154,8 +133,7 @@ function solve(secretNum, bulls, cows) {
         }
     }
 
-    if (!solutionFound)
-    {
+    if (!solutionFound) {
         console.log('No');
     }
 }
