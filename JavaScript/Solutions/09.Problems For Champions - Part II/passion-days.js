@@ -1,8 +1,4 @@
 function solve(shoppingMoney, commands) {
-    console.log(shoppingMoney);
-    shoppingMoney -= 1000;
-    console.log(shoppingMoney);
-
     let i = 0;
     let purchases = 0;
     let command = commands[0];
@@ -73,9 +69,9 @@ function solve(shoppingMoney, commands) {
     }
 }
 
-solve(110, ['mall.Enter', 'd', 'mall.Exit']);
-solve(110, ['mall.Enter', '%', 'mall.Exit']);
-solve(100, ['mall.Enter', 'Ab', '**', 'mall.Exit']);
+solve(110, ['mall.Enter', 'd', 'mall.Exit']); // 1 purchases. Money left: 80.00 lv.
+solve(110, ['mall.Enter', '%', 'mall.Exit']); // 1 purchases. Money left: 55.00 lv.
+solve(100, ['mall.Enter', 'Ab', '**', 'mall.Exit']); // 2 purchases. Money left: 58.10 lv.
 
 let input = ['mall.Enter',
 '%%%%%%%%%%JHZJHJZKLZ',
@@ -99,5 +95,6 @@ let input = ['mall.Enter',
 'mall.Exit',
 '%%%%'];
 
+// JS Limit. This will not work
 solve(79228162514264337593543950335, input); // 353 purchases. Money left: 576460752303416096.37 lv
 
