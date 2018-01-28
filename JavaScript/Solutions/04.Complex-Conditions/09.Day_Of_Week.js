@@ -10,7 +10,7 @@ function dayOfTheWeek([arg1]) {
         case 5: console.log("Friday"); break;
         case 6: console.log("Saturday"); break;
         case 7: console.log("Sunday"); break;
-        default: console.log("Error!");
+        default: console.log("Error");
     }
 }
 

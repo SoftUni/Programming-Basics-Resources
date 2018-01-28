@@ -12,7 +12,7 @@ function pointInRectangle([arg1, arg2, arg3, arg4, arg5, arg6]) {
         console.log("Inside");
     }
     else {
-        Console.log("Outside")
+        console.log("Outside")
     }
 }
 
