@@ -12,33 +12,28 @@ function operationsBetweenNumbers([arg1,arg2,arg3]){
 	if (N2 === 0 && (nOperator === "/" || nOperator === "%")) {
 		output = "Cannot divide " + N1 + " by zero";
 	}
-	else if (nOperator === "/")
-	{
+	else if (nOperator === "/")	{
 		result = (N1 / N2).toFixed(2);
-		output = N1 + " " +  nOperator + " " +  N2 + " = " + result;
-	}
-	else if (nOperator === "%")
-	{
+		output = N1 + " " +  nOperator + " " +  
+		N2 + " = " + result;
+	} else if (nOperator === "%") {
 		result = N1 % N2;
-		output = N1 + " " + nOperator + " " + N2 + " = " + result;
+		output = N1 + " " + nOperator + " " + 
+		N2 + " = " + result;
 	}
-	else
-	{
-		if (nOperator === "+")
-		{
+	else {
+		if (nOperator === "+") {
 			result = N1 + N2;
-		}
-		else if (nOperator === "-")
-		{
+		} else if (nOperator === "-") {
 			result = N1 - N2;
-		}
-		else if (nOperator === "*")
-		{
+		} else if (nOperator === "*") {
 			result = N1 * N2;
 		}
 
 		output = 
-			N1 + " " + nOperator + " " + N2 + " = " + result + " - " + (result % 2 == 0 ? "even" : "odd");
+			N1 + " " + nOperator + " " + N2 + 
+			" = " + result + " - " + 
+			(result % 2 == 0 ? "even" : "odd");
 	}
 	
 	// Output the result

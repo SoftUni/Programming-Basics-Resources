@@ -68,6 +68,6 @@ function hotelRoom([arg1,arg2]){
 	console.log(studioInfo);
 }
 
-hotelRoom(["May","15"]);
-hotelRoom(["June","14"]);
-hotelRoom(["August","20"]);
+//hotelRoom(["May","15"]);
+//hotelRoom(["June","14"]);
+//hotelRoom(["August","20"]);

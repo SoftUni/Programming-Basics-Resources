@@ -50,5 +50,5 @@ function matchTickets([arg1,arg2,arg3]){
 	console.log(result);
 }
 
-matchTickets(["1000","Normal", "1"]);
-matchTickets(["30000","VIP", "49"]);
+//matchTickets(["1000","Normal", "1"]);
+//matchTickets(["30000","VIP", "49"]);
