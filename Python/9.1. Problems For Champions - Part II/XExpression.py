@@ -1,55 +1,55 @@
 result = 0
-expressionOperator = "+"
+expression_operator = "+"
 expression = input()
 symbols = list(expression)
 symbol = symbols.pop(0)
 
 while symbol != "=":
     if symbol == "(":
-        innerResult = 0
-        innerOperator = '+'
+        inner_result = 0
+        inner_operator = '+'
         symbol = symbols.pop(0)
 
         while symbol != ')':
             if 0 <= ord(symbol) - ord('0') and ord(symbol) - ord('0') <= 9:
-                if innerOperator == "+":
-                    innerResult += ord(symbol) - ord('0')
-                elif innerOperator == "-":
-                    innerResult -= ord(symbol) - ord('0')
-                elif innerOperator == "*":
-                    innerResult *= ord(symbol) - ord('0')
-                elif innerOperator == "/":
-                    innerResult /= ord(symbol) - ord('0')
+                if inner_operator == "+":
+                    inner_result += ord(symbol) - ord('0')
+                elif inner_operator == "-":
+                    inner_result -= ord(symbol) - ord('0')
+                elif inner_operator == "*":
+                    inner_result *= ord(symbol) - ord('0')
+                elif inner_operator == "/":
+                    inner_result /= ord(symbol) - ord('0')
             elif symbol == '+' or symbol == '-' or symbol == '/' or symbol == '*':
-                innerOperator = symbol
+                inner_operator = symbol
 
             symbol = symbols.pop(0)
 
-        if expressionOperator == "+":
-            result += innerResult
-        elif expressionOperator == "-":
-            result -= innerResult
-        elif expressionOperator == "*":
-            result *= innerResult
-        elif expressionOperator == "/":
-            result /= innerResult
+        if expression_operator == "+":
+            result += inner_result
+        elif expression_operator == "-":
+            result -= inner_result
+        elif expression_operator == "*":
+            result *= inner_result
+        elif expression_operator == "/":
+            result /= inner_result
 
     elif 0 <= ord(symbol) - ord('0') and ord(symbol) - ord('0') <= 9:
-        if expressionOperator == "+":
+        if expression_operator == "+":
             result += ord(symbol) - ord('0')
-        elif expressionOperator == "-":
+        elif expression_operator == "-":
             result -= ord(symbol) - ord('0')
-        elif expressionOperator == "*":
+        elif expression_operator == "*":
             result *= ord(symbol) - ord('0')
-        elif expressionOperator == "/":
+        elif expression_operator == "/":
             result /= ord(symbol) - ord('0')
 
     elif (symbol == '+' or
             symbol == '-' or
             symbol == '/' or
             symbol == '*'):
-        expressionOperator = symbol
+        expression_operator = symbol
 
     symbol = symbols.pop(0);
 
-print("%.2f" % (result))
+print("%.2f" % result)
