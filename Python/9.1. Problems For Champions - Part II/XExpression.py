@@ -50,6 +50,6 @@ while symbol != "=":
             symbol == '*'):
         expression_operator = symbol
 
-    symbol = symbols.pop(0);
+    symbol = symbols.pop(0)
 
 print("%.2f" % result)
