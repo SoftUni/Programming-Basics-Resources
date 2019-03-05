@@ -4,9 +4,9 @@
    1) Open the book URL in your Web browser: https://csharp-book.softuni.bg
    2) Open the browser's developer console by pressing [F12]
    3) Paste and execute this JS code.
- It will loadd all book chapters into a single HTML page. This HTML can later
+ It will load all book chapters into a single HTML page. This HTML can later
  be converted to other formats (MS Word DOCX, MS Word RTF, ePub, Mobi, PDF)
- using Calibre (https://calibre-ebook.com) or custom propress tool.
+ using Calibre (https://calibre-ebook.com) or custom pre-press tool.
 ****************************************************************************/
 
 // Extract the chapters URLs from the book summary panel
