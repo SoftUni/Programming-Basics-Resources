@@ -8,7 +8,7 @@ using System.Threading;
 class PrepressMSWordBookFromGitBook
 {
     const string inputFileName =
-        @"E:\C# Basics Book\GitHub JS\Programming-Basics-Book-JS-BG\resources\js-html.docx";
+        @"C:\SoftUni\Programming-Basics-Book-CPP-BG\resources\Prepress\sample-excerpt.docx";
     static Application wordApp;
     const int True = -1;
     const int False = 0;
@@ -160,6 +160,9 @@ class PrepressMSWordBookFromGitBook
             parFormat.SpaceBefore = 0;
             parFormat.SpaceAfterAuto = False;
             parFormat.SpaceAfter = 0;
+            parFormat.LineSpacing = 1.0f;
+            //parFormat.LeftIndent = CentimetersToPoints(0.25f);
+            //parFormat.RightIndent = CentimetersToPoints(0.25f);
 
             par.Borders.DistanceFromTop = 0;
             par.Borders.DistanceFromRight = 0;
@@ -215,7 +218,7 @@ class PrepressMSWordBookFromGitBook
     static void AdjustDocumentStyles()
     {
         var headingFonts = new Dictionary<string, dynamic> {
-            {"Heading 1", new { size=24, before=0, after=6 } },
+            {"Heading 1", new { size=22, before=0, after=6 } },
             {"Heading 2", new { size=16, before=12, after=6 }},
             {"Heading 3", new { size=14, before=11, after=6 }},
             {"Heading 4", new { size=12, before=10, after=5 }},
