@@ -8,7 +8,7 @@ using System.Threading;
 class PrepressMSWordBookFromGitBook
 {
     const string inputFileName =
-        @"C:\SoftUni\Programming-Basics-Book-CPP-BG\resources\Prepress\sample-excerpt.docx";
+        @"C:\SoftUni\Programming-Basics-Book-CPP-BG\resources\Programming-Basics-CPlusPlus-v2019.docx";
     static Application wordApp;
     const int True = -1;
     const int False = 0;
@@ -18,8 +18,8 @@ class PrepressMSWordBookFromGitBook
         Stopwatch stopwatch = Stopwatch.StartNew();
 
         Execute(StartMSWord, "Starting MS Word");
-        wordApp.Visible = true; // Show / hide MS Word application window
-        wordApp.ScreenUpdating = true; // Set Enable / disable MS Word screen updates after each change
+        wordApp.Visible = false; // Show / hide MS Word application window
+        wordApp.ScreenUpdating = false; // Set Enable / disable MS Word screen updates after each change
 
         Execute(OpenBookWordFile, String.Format("Opening MS Word document {0}...", inputFileName));
         Execute(FixPageSizeAndMargins, "Fixing page size and margins");
@@ -161,8 +161,6 @@ class PrepressMSWordBookFromGitBook
             parFormat.SpaceAfterAuto = False;
             parFormat.SpaceAfter = 0;
             parFormat.LineSpacing = 1.0f;
-            //parFormat.LeftIndent = CentimetersToPoints(0.25f);
-            //parFormat.RightIndent = CentimetersToPoints(0.25f);
 
             par.Borders.DistanceFromTop = 0;
             par.Borders.DistanceFromRight = 0;
@@ -178,8 +176,8 @@ class PrepressMSWordBookFromGitBook
 
                 par.Shading.BackgroundPatternColor = CreateWdColor(247, 247, 247);
 
-                parFormat.LeftIndent = CentimetersToPoints(0.4);
-                parFormat.RightIndent = CentimetersToPoints(0.4);
+                parFormat.LeftIndent = CentimetersToPoints(0.25);
+                parFormat.RightIndent = CentimetersToPoints(0.25);
             }
         }
     }
