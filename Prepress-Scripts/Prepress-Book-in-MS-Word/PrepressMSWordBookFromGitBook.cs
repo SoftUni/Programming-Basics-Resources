@@ -8,7 +8,7 @@ using System.Threading;
 class PrepressMSWordBookFromGitBook
 {
     const string inputFileName =
-        @"C:\SoftUni\Programming-Basics-Book-CPP-BG\resources\Programming-Basics-CPlusPlus-v2019.docx";
+		@"C:\SoftUni\Programming-Basics-Books\Programming-Basics-Book-JS-EN\resources\Programming-Basics-JavaScript-v2021.docx";
     static Application wordApp;
     const int True = -1;
     const int False = 0;
