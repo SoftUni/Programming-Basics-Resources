@@ -8,7 +8,7 @@ using System.Threading;
 class PrepressMSWordBookFromGitBook
 {
     const string inputFileName =
-		@"C:\SoftUni\Programming-Basics-Books\Programming-Basics-Book-Python-EN\resources\Programming-Basics-Python-v2021.docx";
+		@"C:\SoftUni\Programming-Basics-Books\Programming-Basics-Book-Java-EN\resources\Programming-Basics-Java-v2021.docx";
     static Application wordApp;
     static Document doc;
     const int True = -1;
@@ -23,16 +23,17 @@ class PrepressMSWordBookFromGitBook
         wordApp.ScreenUpdating = false; // Set Enable / disable MS Word screen updates after each change
 
         Execute(OpenBookWordFile, String.Format("Opening MS Word document {0}...", inputFileName));
-        Execute(FixPageSizeAndMargins, "Fixing page size and margins");
+		Execute(AdjustDocumentStyles, "Fixing document styles");
+		Execute(FixImageSizes, "Fixing image sizes");
+		Execute(FixPageSizeAndMargins, "Fixing page size and margins");
         Execute(FixNonBreakingSpaces, "Fixing non-breaking-spaces");
-        Execute(AdjustDocumentStyles, "Fixing document styles");
-        Execute(FixFonts, "Fixing fonts");
+		Execute(FixFonts, "Fixing fonts");
         Execute(FixParagraphs, "Fixing paragraphs (headings / lists / source code blocks)");
         Execute(FixTables, "Fixing tables");
-        Execute(FixImageSizes, "Fixing image sizes");
         Execute(FixWordsLanguage, "Fixing language for individual words");
 
 		wordApp.Visible = true;
+		doc.Save();
 
 		stopwatch.Stop();
         Console.WriteLine("Total time: {0}", stopwatch.Elapsed);
@@ -126,13 +127,14 @@ class PrepressMSWordBookFromGitBook
             }
             else
             {
-                // Process paragraphs
-                var parFormat = par.Range.ParagraphFormat;
+				// Process paragraphs
+				var parRange = par.Range;
+				var parFormat = parRange.ParagraphFormat;
 
-                if (par.Range.ListFormat.ListType != WdListType.wdListNoNumbering)
+				if (parRange.ListFormat.ListType != WdListType.wdListNoNumbering)
                     // Process lists (bullets / numbered list / nested bullets)
                     FormatListParagraph(par, parFormat);
-                else if (par.Range.Font.Name == "Consolas")
+                else if (parRange.Font.Name == "Consolas" || parRange.Font.Name == "Courier New")
                     // Process source code blocks
                     FormatSourceCodeParagraph(par, parFormat);
                 else
@@ -268,7 +270,8 @@ class PrepressMSWordBookFromGitBook
         {
             if (shape.Type == WdInlineShapeType.wdInlineShapePicture)
             {
-                if (shape.AlternativeText.Contains("alert-icon.png"))
+                if (shape.AlternativeText.Contains("alert-icon.png") ||
+					(shape.Width == 75 && shape.Height == 69))
                 {
                     // Alert icon --> make it "width:50%; height:50%"
                     shape.ScaleWidth = 50;
@@ -316,8 +319,6 @@ class PrepressMSWordBookFromGitBook
         Timer timer = new Timer((state) => Console.Write("."), null, 0, 1000);
 
         action();
-
-		doc?.Save();
 
 		timer.Dispose();
         stopwatch.Stop();
