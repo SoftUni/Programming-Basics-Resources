@@ -8,8 +8,9 @@ using System.Threading;
 class PrepressMSWordBookFromGitBook
 {
     const string inputFileName =
-		@"C:\SoftUni\Programming-Basics-Books\Programming-Basics-Book-JS-EN\resources\Programming-Basics-JavaScript-v2021.docx";
+		@"C:\SoftUni\Programming-Basics-Books\Programming-Basics-Book-Python-EN\resources\Programming-Basics-Python-v2021.docx";
     static Application wordApp;
+    static Document doc;
     const int True = -1;
     const int False = 0;
 
@@ -31,14 +32,16 @@ class PrepressMSWordBookFromGitBook
         Execute(FixImageSizes, "Fixing image sizes");
         Execute(FixWordsLanguage, "Fixing language for individual words");
 
-        stopwatch.Stop();
-        wordApp.Visible = true;
+		wordApp.Visible = true;
+
+		stopwatch.Stop();
         Console.WriteLine("Total time: {0}", stopwatch.Elapsed);
     }
 
     static void FixWordsLanguage()
     {
-        foreach (Range word in wordApp.ActiveDocument.Words)
+        Console.Write($"[words={doc.Words.Count}]");
+		foreach (Range word in doc.Words)
         {
             string wordText = word.Text.Trim();
             var cyrillicLettersCount = CountCyrillicLetters(wordText);
@@ -70,7 +73,7 @@ class PrepressMSWordBookFromGitBook
     static void FixFonts()
     {
         // Process non-heading paragraphs
-        var finder = wordApp.ActiveDocument.Content.Find;
+        var finder = doc.Content.Find;
         finder.ClearFormatting();
         finder.Replacement.ClearFormatting();
         finder.Font.Name = "Times New Roman";
@@ -112,7 +115,8 @@ class PrepressMSWordBookFromGitBook
 
     static void FixParagraphs()
     {
-        foreach (Paragraph par in wordApp.ActiveDocument.Paragraphs)
+		Console.Write($"[paragraphs={doc.Paragraphs.Count}]");
+		foreach (Paragraph par in doc.Paragraphs)
         {
             int outlineLevel = (int)par.OutlineLevel;
             if (outlineLevel >= 1 && outlineLevel <= 6)
@@ -194,7 +198,8 @@ class PrepressMSWordBookFromGitBook
     static void FixTables()
     {
         var pageWidth = CalcPageWidth();
-        foreach (Table table in wordApp.ActiveDocument.Tables)
+		Console.Write($"[tables={doc.Tables.Count}]");
+        foreach (Table table in doc.Tables)
         {
             table.PreferredWidthType = WdPreferredWidthType.wdPreferredWidthAuto;
             table.Range.ParagraphFormat.SpaceBefore = 0;
@@ -210,7 +215,7 @@ class PrepressMSWordBookFromGitBook
 
     static void OpenBookWordFile()
     {
-        wordApp.Documents.Open(inputFileName);
+        doc = wordApp.Documents.Open(inputFileName);
     }
 
     static void AdjustDocumentStyles()
@@ -230,7 +235,7 @@ class PrepressMSWordBookFromGitBook
         void AdjustHeadingStyle(int headingSize)
         {
             var headingName = "Heading " + headingSize;
-            var headingStyle = wordApp.ActiveDocument.Styles[headingName];
+            var headingStyle = doc.Styles[headingName];
             headingStyle.Font.Name = "Lato Medium";
             headingStyle.Font.Bold = False;
             headingStyle.Font.Size = headingFonts[headingName].size;
@@ -239,14 +244,14 @@ class PrepressMSWordBookFromGitBook
             headingStyle.ParagraphFormat.SpaceAfterAuto = False;
             headingStyle.ParagraphFormat.SpaceAfter = headingFonts[headingName].after;
             headingStyle.set_BaseStyle("");
-            headingStyle.set_NextParagraphStyle(wordApp.ActiveDocument.Styles["Normal"]);
+            headingStyle.set_NextParagraphStyle(doc.Styles["Normal"]);
             if (headingStyle.ParagraphFormat.OutlineLevel == WdOutlineLevel.wdOutlineLevel1)
                 headingStyle.ParagraphFormat.PageBreakBefore = True;
             headingStyle.Font.Color = WdColor.wdColorAutomatic;
             headingStyle.LanguageID = WdLanguageID.wdBulgarian;
         }
 
-        var normalStyle = wordApp.ActiveDocument.Styles["Normal"];
+        var normalStyle = doc.Styles["Normal"];
         normalStyle.Font.Name = "Lato Light";
         normalStyle.Font.Size = 11;
         normalStyle.LanguageID = WdLanguageID.wdBulgarian;
@@ -258,8 +263,8 @@ class PrepressMSWordBookFromGitBook
     static void FixImageSizes()
     {
         var pageWidth = CalcPageWidth();
-
-        foreach (InlineShape shape in wordApp.ActiveDocument.InlineShapes)
+		Console.Write($"[inlineShapes={doc.InlineShapes.Count}]");
+		foreach (InlineShape shape in doc.InlineShapes)
         {
             if (shape.Type == WdInlineShapeType.wdInlineShapePicture)
             {
@@ -288,7 +293,7 @@ class PrepressMSWordBookFromGitBook
     
     static void FixPageSizeAndMargins()
     {
-        var pageSetup = wordApp.ActiveDocument.PageSetup;
+        var pageSetup = doc.PageSetup;
         pageSetup.PageWidth = CentimetersToPoints(17);
         pageSetup.PageHeight = CentimetersToPoints(24);
 
@@ -301,7 +306,7 @@ class PrepressMSWordBookFromGitBook
         pageSetup.HeaderDistance = CentimetersToPoints(1);
         pageSetup.FooterDistance = CentimetersToPoints(1);
 
-        wordApp.ActiveDocument.DefaultTabStop = CentimetersToPoints(0.8);
+        doc.DefaultTabStop = CentimetersToPoints(0.8);
     }
 
     static void Execute(Action action, string description)
@@ -312,7 +317,9 @@ class PrepressMSWordBookFromGitBook
 
         action();
 
-        timer.Dispose();
+		doc?.Save();
+
+		timer.Dispose();
         stopwatch.Stop();
         Console.WriteLine("done. ({0:f2} secs)", stopwatch.Elapsed.TotalSeconds);
     }
@@ -320,9 +327,9 @@ class PrepressMSWordBookFromGitBook
     static float CalcPageWidth()
     {
         var pageWidth =
-            wordApp.ActiveDocument.PageSetup.PageWidth
-            - wordApp.ActiveDocument.PageSetup.LeftMargin
-            - wordApp.ActiveDocument.PageSetup.RightMargin;
+            doc.PageSetup.PageWidth
+            - doc.PageSetup.LeftMargin
+            - doc.PageSetup.RightMargin;
         return pageWidth;
     }
 
